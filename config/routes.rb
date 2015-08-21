@@ -1,4 +1,24 @@
 Rails.application.routes.draw do
+  get 'admin/index'
+
+  get 'admin/flag'
+
+  get 'admin/score'
+
+  get 'admin/genre'
+
+  get 'admin/genre_post'
+
+  get 'admin/team'
+
+  get 'admin/team_post'
+
+  get 'notification/index'
+
+  get 'notification/show'
+
+  get 'score/score'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
