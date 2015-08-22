@@ -13,6 +13,7 @@ gem 'devise'
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'byebug'
   gem 'web-console', '~> 2.0'
