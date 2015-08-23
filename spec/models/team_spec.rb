@@ -16,8 +16,8 @@ RSpec.describe Team, type: :model do
       should validate_presence_of(:solved_problem)
     end
 
-    it '1文字以上255文字以内であること' do
-      should validate_length_of(:solved_problem).is_at_least(1)
+    it '0文字以上であること' do
+      should validate_length_of(:solved_problem).is_at_least(0)
     end
   end
 

@@ -10,7 +10,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates :account, presence: true, uniqueness: true
+  validates :account, presence: true, uniqueness: true, length: {in: 1..255}
+  validates :admin_flag, presence: true
 
   def email_required?
     false

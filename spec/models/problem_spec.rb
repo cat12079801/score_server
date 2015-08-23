@@ -31,7 +31,7 @@ RSpec.describe Problem, type: :model do
     end
 
     it 'FLAG_hogehogeのフォーマットであること' do
-      expect(:flag).to match /^FLAG_/
+      expect(:flag).to match /\AFLAG_/
     end
   end
 
