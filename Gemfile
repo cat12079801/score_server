@@ -26,5 +26,6 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'hirb'
   gem 'hirb-unicode'
+  gem 'quiet_assets'
 end
 
