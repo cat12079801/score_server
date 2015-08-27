@@ -8,15 +8,14 @@ Rails.application.routes.draw do
   scope :admin do
     resources :admin_notifications, :path => 'notifications'
     resources :admin_problems, :path => 'problems'
+    resources :admin_genres, :only => [:index, :create, :destroy], :path => 'genres'
   end
 
   get 'admin/index'
   get 'admin/flag'
   get 'admin/score'
-  get 'admin/genre'
-  get 'admin/genre_post'
   get 'admin/team'
-  get 'admin/team_post'
+  post 'admin/team_post'
   get 'notification/index'
   get 'notification/show'
   get 'score/score'

@@ -8,15 +8,12 @@ class AdminController < ApplicationController
   def score
   end
 
-  def genre
-  end
-
-  def genre_post
-  end
-
   def team
   end
 
   def team_post
+  end
+
+  def team_destroy
   end
 end
