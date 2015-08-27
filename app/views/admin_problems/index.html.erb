@@ -5,6 +5,11 @@
 <table>
   <thead>
     <tr>
+      <th>問題名</th>
+      <th>得点</th>
+      <th>ジャンル</th>
+      <th>公開</th>
+      <th>最速正答者</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -12,9 +17,14 @@
   <tbody>
     <% @admin_problems.each do |admin_problem| %>
       <tr>
-        <td><%= link_to 'Show', admin_problem %></td>
+        <td><%= admin_problem.title %></td>
+        <td><%= admin_problem.point %></td>
+        <td><%= admin_problem.genre.name %></td>
+        <td><%= '済' if admin_problem.opened %></td>
+        <td><%= admin_problem.user.account if admin_problem.user.present? %></td>
+        <td><%= link_to 'Show', admin_problem_path(admin_problem) %></td>
         <td><%= link_to 'Edit', edit_admin_problem_path(admin_problem) %></td>
-        <td><%= link_to 'Destroy', admin_problem, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', admin_problem_path(admin_problem), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

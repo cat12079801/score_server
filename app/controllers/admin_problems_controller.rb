@@ -25,13 +25,11 @@ class AdminProblemsController < ApplicationController
   # POST /admin_problems
   # POST /admin_problems.json
   def create
-    a = admin_problem_params
-    #@admin_problem = Problem.new(title: a[:title], question: a[:question], flag: a[:flag], opened: a[:opened], point: a[:point], genre_id: a[:genre], user_id: 1)
     @admin_problem = Problem.new(admin_problem_params)
 
     respond_to do |format|
       if @admin_problem.save
-        format.html { redirect_to @admin_problem, notice: 'Admin problem was successfully created.' }
+        format.html { redirect_to admin_problem_path(@admin_problem), notice: 'Admin problem was successfully created.' }
         format.json { render :show, status: :created, location: @admin_problem }
       else
         set_genres
