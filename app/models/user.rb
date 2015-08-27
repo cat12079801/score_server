@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :account, presence: true, uniqueness: true, length: {in: 1..255}
-  validates :admin_flag, presence: true
+  #validates :admin_flag
 
   def email_required?
     false
