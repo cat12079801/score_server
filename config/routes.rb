@@ -9,13 +9,12 @@ Rails.application.routes.draw do
     resources :admin_notifications, :path => 'notifications'
     resources :admin_problems, :path => 'problems'
     resources :admin_genres, :only => [:index, :create, :destroy], :path => 'genres'
+    resources :admin_teams, :only => [:index, :create], :path => 'teams'
   end
 
   get 'admin/index'
   get 'admin/flag'
   get 'admin/score'
-  get 'admin/team'
-  post 'admin/team_post'
   get 'notification/index'
   get 'notification/show'
   get 'score/score'
