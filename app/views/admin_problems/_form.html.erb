@@ -1,4 +1,4 @@
-<%= form_for(@admin_problem) do |f| %>
+<%= form_for @admin_problem, :url => {:controller => 'admin_problems'} do |f| %>
   <% if @admin_problem.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@admin_problem.errors.count, "error") %> prohibited this admin_problem from being saved:</h2>
@@ -10,6 +10,36 @@
       </ul>
     </div>
   <% end %>
+
+  <div>
+    <%= f.label '問題名' %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div>
+    <%= f.label '問題文' %>
+    <%= f.text_area :question %>
+  </div>
+
+  <div>
+    <%= f.label 'フラグ' %>
+    <%= f.text_field :flag %>
+  </div>
+
+  <div>
+    <%= f.label '得点' %>
+    <%= f.text_field :point %>
+  </div>
+
+  <div>
+    <%= f.label 'ジャンル' %>
+    <%= f.collection_select :genre_id, @genres, :id, :name %>
+  </div>
+
+  <div>
+    <%= f.label '公開' %>
+    <%= f.check_box :opened, {}, true, false %>
+  </div>
 
   <div class="actions">
     <%= f.submit %>

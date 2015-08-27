@@ -1,10 +1,11 @@
 class AdminProblemsController < ApplicationController
   before_action :set_admin_problem, only: [:show, :edit, :update, :destroy]
+  before_action :set_genres, only: [:edit, :new]
 
   # GET /admin_problems
   # GET /admin_problems.json
   def index
-    @admin_problems = AdminProblem.all
+    @admin_problems = Problem.all
   end
 
   # GET /admin_problems/1
@@ -14,7 +15,7 @@ class AdminProblemsController < ApplicationController
 
   # GET /admin_problems/new
   def new
-    @admin_problem = AdminProblem.new
+    @admin_problem = Problem.new
   end
 
   # GET /admin_problems/1/edit
@@ -24,13 +25,16 @@ class AdminProblemsController < ApplicationController
   # POST /admin_problems
   # POST /admin_problems.json
   def create
-    @admin_problem = AdminProblem.new(admin_problem_params)
+    a = admin_problem_params
+    #@admin_problem = Problem.new(title: a[:title], question: a[:question], flag: a[:flag], opened: a[:opened], point: a[:point], genre_id: a[:genre], user_id: 1)
+    @admin_problem = Problem.new(admin_problem_params)
 
     respond_to do |format|
       if @admin_problem.save
         format.html { redirect_to @admin_problem, notice: 'Admin problem was successfully created.' }
         format.json { render :show, status: :created, location: @admin_problem }
       else
+        set_genres
         format.html { render :new }
         format.json { render json: @admin_problem.errors, status: :unprocessable_entity }
       end
@@ -45,6 +49,7 @@ class AdminProblemsController < ApplicationController
         format.html { redirect_to @admin_problem, notice: 'Admin problem was successfully updated.' }
         format.json { render :show, status: :ok, location: @admin_problem }
       else
+        set_genres
         format.html { render :edit }
         format.json { render json: @admin_problem.errors, status: :unprocessable_entity }
       end
@@ -64,11 +69,15 @@ class AdminProblemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_admin_problem
-      @admin_problem = AdminProblem.find(params[:id])
+      @admin_problem = Problem.find(params[:id])
+    end
+
+    def set_genres
+      @genres = Genre.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_problem_params
-      params[:admin_problem]
+      params.require(:problem).permit(:title, :question, :flag, :point, :genre_id, :opened)
     end
 end
