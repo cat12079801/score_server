@@ -1,8 +1,9 @@
 class Problem < ActiveRecord::Base
-  has_many :user, through: :solve
+  has_many :users, through: :solve
   has_many :solve
   has_many :sent_flag
   belongs_to :genre
+  belongs_to :user
 
   validates :title, presence: true, length: {in: 1..255}
   validates :question, presence: true, length: {minimum: 1}

@@ -1,30 +1,41 @@
 <p id="notice"><%= notice %></p>
 
-<table>
-  <thead>
-    <tr>
-      <th>問題名</th>
-      <th>問題文</th>
-      <th>flag</th>
-      <th>得点</th>
-      <th>ジャンル</th>
-      <th>公開</th>
-      <th>最速正答者</th>
-    </tr>
-  </thead>
+<div class="page-header">
+  <span>
+  <h1 style="display: inline"><%= @admin_problem.title %></h1>
+  <p style="display: inline; font-size: 38px"><%= @admin_problem.genre.name %>/<%= @admin_problem.point %></p>
+  <% if @admin_problem.opened %>
+    <span class="label label-primary">公開済</span>
+  <% else %>
+    <span class="label label-danger">未公開</span>
+  <% end %>
+  <% if @admin_problem.user.present? %>
+    <span class="label label-success">正解者あり</span>
+  <% end %>
+</span>
+</div>
 
-  <tbody>
-      <tr>
-        <td><%= @admin_problem.title %></td>
-        <td><%= @admin_problem.question %></td>
-        <td><%= @admin_problem.flag %></td>
-        <td><%= @admin_problem.point %></td>
-        <td><%= @admin_problem.genre.name %></td>
-        <td><%= '済' if @admin_problem.opened %></td>
-        <td><%= @admin_problem.user.account if @admin_problem.user.present? %></td>
-      </tr>
-  </tbody>
-</table>
+<div class="jumbotron">
+  <%= @admin_problem.question %>
+</div>
+
+<div class="panel panel-warning">
+  <div class="panel-heading">
+    <h3 class="panel-title">答え</h3>
+  </div>
+  <div class="panel-body">
+    <%= @admin_problem.flag %>
+  </div>
+</div>
+
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <h3 class="panel-title">回答者</h3>
+  </div>
+  <div class="panel-body">
+    <%= @admin_problem.users.pluck(:account).join(', ') %>
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_admin_problem_path(@admin_problem) %> |
 <%= link_to 'Back', admin_problems_path %>
