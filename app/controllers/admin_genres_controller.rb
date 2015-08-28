@@ -9,7 +9,7 @@ class AdminGenresController < ApplicationController
 
     respond_to do |format|
       if @genre.save
-        format.html { redirect_to genres_path(@genre), notice: 'Admin genre was successfully created.' }
+        format.html { redirect_to admin_genres_path, notice: 'Admin genre was successfully created.' }
         format.json { render :index, status: :created, location: @genre }
       else
         @genres = Genre.all
