@@ -23,7 +23,7 @@
 
   <div class="field">
     <%= f.label :team %>
-    <%= f.collection_select :team_id, @teams, :id, :name %>
+    <%= f.collection_select :team_id, @teams, :id, :name, :prompt => '好きなちーむを選ぶのよさ' %>
   </div>
 
   <div class="actions">
