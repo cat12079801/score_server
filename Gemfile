@@ -10,6 +10,12 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
+# http://qiita.com/tsumekoara/items/1055879e1fb9d54b3059
+gem 'twitter-bootswatch-rails'
+gem 'twitter-bootswatch-rails-helpers'
+gem 'execjs'
+gem 'less-rails'
+gem 'therubyracer'
 
 group :development, :test do
   gem 'rspec-rails'
