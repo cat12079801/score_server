@@ -20,5 +20,5 @@ Rails.application.routes.draw do
   get 'admin/score'
   get 'notification/index'
   get 'notification/show'
-  get 'score/score'
+  get 'score', :controller => 'score', :action => 'score'
 end
