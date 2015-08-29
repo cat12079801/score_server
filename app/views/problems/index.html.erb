@@ -1,25 +1,30 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Problems</h1>
-
-<table>
+<table class="table table-striped table-hover ">
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th>問題名</th>
+      <th>得点</th>
+      <th>ジャンル</th>
+      <th>回答状況</th>
     </tr>
   </thead>
-
   <tbody>
     <% @problems.each do |problem| %>
       <tr>
-        <td><%= link_to 'Show', problem %></td>
-        <td><%= link_to 'Edit', edit_problem_path(problem) %></td>
-        <td><%= link_to 'Destroy', problem, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to problem.title, problem_url(problem) %></td>
+        <td><%= problem.point %></td>
+        <td><%= problem.genre.name %></td>
+        <td>
+        <% if problem.user == current_user %>
+          <span class="label label-success">最速正答</span>
+        <% elsif current_user.team.problems.ids.index(problem.id).present? %>
+          <span class="label label-primary">チームが正答</span>
+        <% elsif problem.user.present? %>
+          <span class="label label-danger">他チームが正答</span>
+        <% else %>
+          <span class="label label-default">未正答</span>
+        <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Problem', new_problem_path %>

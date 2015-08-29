@@ -4,7 +4,7 @@ class ProblemsController < ApplicationController
   # GET /problems
   # GET /problems.json
   def index
-    @problems = Problem.all
+    @problems = Problem.where(:opened => true)
   end
 
   # GET /problems/1
