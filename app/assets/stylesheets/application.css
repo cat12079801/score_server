@@ -15,3 +15,8 @@
  *= require paper/loader
  *= require paper/bootswatch
  */
+
+div#wrapper {
+  margin: 0 auto;
+  width: 900px;
+}

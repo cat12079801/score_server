@@ -19,23 +19,37 @@
   <%= @admin_problem.question %>
 </div>
 
-<div class="panel panel-warning">
-  <div class="panel-heading">
-    <h3 class="panel-title">答え</h3>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="panel panel-warning">
+      <div class="panel-heading">
+        <h3 class="panel-title">答え</h3>
+      </div>
+      <div class="panel-body">
+        <%= @admin_problem.flag %>
+      </div>
+    </div>
   </div>
-  <div class="panel-body">
-    <%= @admin_problem.flag %>
+
+  <div class="col-sm-6">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">正解者</h3>
+      </div>
+      <div class="panel-body">
+        <%= @admin_problem.users.pluck(:account).join(', ') %>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="panel panel-success">
-  <div class="panel-heading">
-    <h3 class="panel-title">回答者</h3>
-  </div>
-  <div class="panel-body">
-    <%= @admin_problem.users.pluck(:account).join(', ') %>
+<div class="row">
+  <div class="col-sm-9"></div>
+  <div class="col-sm-3">
+    <div class="btn-group btn-group-justified next">
+      <%= link_to 'Edit', edit_admin_problem_path(@admin_problem), {:class => "btn btn-default"} %>
+      <%= link_to 'Back', admin_problems_path, {:class => "btn btn-default"} %>
+    </div>
   </div>
 </div>
 
-<%= link_to 'Edit', edit_admin_problem_path(@admin_problem) %> |
-<%= link_to 'Back', admin_problems_path %>
