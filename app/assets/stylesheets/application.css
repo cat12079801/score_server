@@ -20,3 +20,7 @@ div#wrapper {
   margin: 0 auto;
   width: 900px;
 }
+
+.set-right {
+  text-align: right;
+}
