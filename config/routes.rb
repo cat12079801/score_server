@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   root to: "problems#index"
 
-  resources :problems
+  resources :problems, :only => [:index, :show, :update]
 
   scope :admin do
     resources :admin_notifications, :path => 'notifications'

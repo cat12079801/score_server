@@ -1,4 +1,40 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_problem_path(@problem) %> |
-<%= link_to 'Back', problems_path %>
+<div class="page-header">
+  <span>
+  <h1 style="display: inline"><%= @problem.title %></h1>
+  <p style="display: inline; font-size: 38px"><%= @problem.genre.name %> / <%= @problem.point %>pt</p>
+</span>
+</div>
+
+<div class="jumbotron">
+  <%= @problem.question %>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <%= form_tag(problem_url(@problem), :method => 'put') do %>
+      <% if @problem.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@problem.errors.count, "error") %> prohibited this problem from being saved:</h2>
+    
+          <ul>
+          <% @problem.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="row">
+        <div class="col-xs-2">
+          <%= submit_tag 'submin flag', :class => "btn btn-primary" %>
+        </div>
+        <div class="col-xs-10">
+          <%= text_field_tag 'problem[flag]', '', :class => "form-control", :placeholder => "flag_" %>
+        </div>
+      </div>
+    
+    <% end %>
+  </div>
+</div>
