@@ -74,7 +74,7 @@
 </nav>
 <% end %>
 
-<div id="wrapper">
+<div id="wrapper" <%= 'class=devise' if controller.controller_name == 'sessions' %>>
   <%= yield %>
 </div>
 </body>

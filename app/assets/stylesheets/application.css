@@ -21,6 +21,12 @@ div#wrapper {
   width: 900px;
 }
 
+div#wrapper.devise {
+  width: 600px;
+  margin: auto;
+  margin-top: 100px;
+}
+
 .set-right {
   text-align: right;
 }
