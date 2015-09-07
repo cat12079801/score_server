@@ -16,12 +16,12 @@
         <td>
         <% if problem.user == current_user %>
           <span class="label label-success">最速正答</span>
-        <% elsif current_user.team.problems.ids.index(problem.id).present? %>
-          <span class="label label-primary">チームが正答</span>
+        <% elsif problem.users.index(current_user).present? %>
+          <span class="label label-primary">正解</span>
+        <% elsif current_user.team.problems.index(problem).present? %>
+          <span class="label label-primary">チームが正解</span>
         <% elsif problem.user.present? %>
           <span class="label label-danger">他チームが正答</span>
-        <% else %>
-          <span class="label label-default">未正答</span>
         <% end %>
         </td>
       </tr>
