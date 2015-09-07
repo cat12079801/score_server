@@ -5,6 +5,8 @@ $(function() {
       console.log(data["status"]);
       if(data["status"] == 'success'){
         append_modal();
+      }else if(data["status"] == 'already'){
+        append_already();
       }else{
         append_alert(data["flag"]);
       }
@@ -18,6 +20,9 @@ $(function() {
 function append_modal(){
   $('div.alerts').append('<div class="modal"> <div class="modal-dialog"> <div class="modal-content"> <div class="modal-header"> <h4 class="modal-title">Congratulations!</h4> </div> <div class="modal-body"> <p>You solved this problem :)</p><p>Let\'s try others plz :p</p></div> <div class="modal-footer"> <button type="button" class="btn btn-primary close-modal">Save changes</button> </div> </div> </div> </div>');
 }
+
+function append_already(){
+  $('div.alerts').append('<div class="alert alert-dismissible alert-info"> <button type="button" class="close" data-dismiss="alert">×</button> <strong>You already solved :(</strong></div>'); }
 
 function append_alert(flag){
   if(flag === ''){

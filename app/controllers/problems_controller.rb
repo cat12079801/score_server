@@ -15,7 +15,9 @@ class ProblemsController < ApplicationController
   # PATCH/PUT /problems/1
   # PATCH/PUT /problems/1.json
   def update
-    if params[:problem][:flag] == @problem.flag
+    if params[:problem][:flag] == @problem.flag and @problem.users.index(current_user).present?
+      render json: {status: 'already'}
+    elsif params[:problem][:flag] == @problem.flag
       SentFlag.create(flag: params[:problem][:flag], user_id: current_user.id, problem_id: @problem.id, collect: true)
 
       if @problem.user.nil?
