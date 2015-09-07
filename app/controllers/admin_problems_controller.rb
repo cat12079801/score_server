@@ -1,6 +1,7 @@
 class AdminProblemsController < ApplicationController
   before_action :set_admin_problem, only: [:show, :edit, :update, :destroy]
   before_action :set_genres, only: [:edit, :new]
+  before_action :admin_check!
 
   # GET /admin_problems
   # GET /admin_problems.json

@@ -1,4 +1,6 @@
 class AdminTeamsController < ApplicationController
+  before_action :admin_check!
+
   def index
     @teams = Team.all
     @team = Team.new

@@ -1,5 +1,6 @@
 class AdminNotificationsController < ApplicationController
   before_action :set_admin_notification, only: [:show, :edit, :update, :destroy]
+  before_action :admin_check!
 
   # GET /admin_notifications
   # GET /admin_notifications.json

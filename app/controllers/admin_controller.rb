@@ -1,4 +1,6 @@
 class AdminController < ApplicationController
+  before_action :admin_check!
+
   def index
   end
 
