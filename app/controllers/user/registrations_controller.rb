@@ -19,9 +19,10 @@ before_filter :configure_sign_up_params, only: [:create]
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    params[:user][:account] = current_user.account
+    super
+  end
 
   # DELETE /resource
   # def destroy
