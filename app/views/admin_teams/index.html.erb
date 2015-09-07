@@ -11,8 +11,8 @@
     <% @teams.each do |team| %>
       <tr>
         <td><%= team.name %></td>
-        <td><%= team.solved_problem %></td>
-        <td><%= team.point %></td>
+        <td><%= team.problems.pluck(:title).join(', ') %></td>
+        <td><%= team_point team %> (<%= team_point_base team %> + <%= team_point_special team %>)</td>
       </tr>
     <% end %>
   </tbody>

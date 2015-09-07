@@ -61,7 +61,7 @@
         <li <%= ' class=active' if controller.controller_name == 'score' %>><a href="/score">スコア</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a><%= current_user.team.name %> / <%= current_user.team.problems.pluck(:point).sum %>pt</a></li>
+        <li><a><%= current_user.team.name %> / <%= team_point current_user.team %>(<%= team_point_base current_user.team %>+<%= team_point_special current_user.team %>)pt</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_user.account %> <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
