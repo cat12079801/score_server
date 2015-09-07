@@ -13,7 +13,7 @@
 
 <div class="row">
   <div class="col-lg-12">
-    <%= form_tag(problem_url(@problem), :method => 'put') do %>
+    <%= form_tag(problem_url(@problem), :method => 'put', :remote => true, :class => 'form-ajax') do %>
       <% if @problem.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@problem.errors.count, "error") %> prohibited this problem from being saved:</h2>
@@ -28,7 +28,7 @@
 
       <div class="row">
         <div class="col-xs-2">
-          <%= submit_tag 'submin flag', :class => "btn btn-primary" %>
+          <%= submit_tag 'submit flag', :class => "btn btn-primary" %>
         </div>
         <div class="col-xs-10">
           <%= text_field_tag 'problem[flag]', '', :class => "form-control", :placeholder => "flag_" %>
@@ -37,4 +37,7 @@
     
     <% end %>
   </div>
+</div>
+
+<div class="alerts">
 </div>

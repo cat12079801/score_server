@@ -24,3 +24,18 @@ div#wrapper {
 .set-right {
   text-align: right;
 }
+
+div.alerts {
+  margin-top: 50px;
+}
+
+div.modal {
+  margin: auto auto;
+  display: block;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+div.modal div.modal-dialog {
+  margin: 150px auto;
+  width: 400px;
+}

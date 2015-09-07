@@ -1,5 +1,5 @@
 class ProblemsController < ApplicationController
-  before_action :set_problem, only: [:show, :edit, :update, :destroy]
+  before_action :set_problem, only: [:show, :update]
 
   # GET /problems
   # GET /problems.json
@@ -12,52 +12,29 @@ class ProblemsController < ApplicationController
   def show
   end
 
-  # GET /problems/new
-  def new
-    @problem = Problem.new
-  end
-
-  # GET /problems/1/edit
-  def edit
-  end
-
-  # POST /problems
-  # POST /problems.json
-  def create
-    @problem = Problem.new(problem_params)
-
-    respond_to do |format|
-      if @problem.save
-        format.html { redirect_to @problem, notice: 'Problem was successfully created.' }
-        format.json { render :show, status: :created, location: @problem }
-      else
-        format.html { render :new }
-        format.json { render json: @problem.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # PATCH/PUT /problems/1
   # PATCH/PUT /problems/1.json
   def update
-    respond_to do |format|
-      if @problem.update(problem_params)
-        format.html { redirect_to @problem, notice: 'Problem was successfully updated.' }
-        format.json { render :show, status: :ok, location: @problem }
-      else
-        format.html { render :edit }
-        format.json { render json: @problem.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+    if params[:problem][:flag] == @problem.flag
+      SentFlag.create(flag: params[:problem][:flag], user_id: current_user.id, problem_id: @problem.id, collect: true)
 
-  # DELETE /problems/1
-  # DELETE /problems/1.json
-  def destroy
-    @problem.destroy
-    respond_to do |format|
-      format.html { redirect_to problems_url, notice: 'Problem was successfully destroyed.' }
-      format.json { head :no_content }
+      if @problem.user.nil?
+        @problem.user = current_user
+        @problem.save
+      end
+      if @problem.teams.index(current_user.team).nil?
+        @problem.teams << current_user.team
+        @problem.save
+      end
+      if @problem.users.index(current_user).nil?
+        @problem.users << current_user
+        @problem
+      end
+
+      render json: {status: 'success'}
+    else
+      SentFlag.create(flag: params[:problem][:flag], user_id: current_user.id, problem_id: @problem.id, collect: false)
+      render json: {status: 'failure', flag: params[:problem][:flag]}
     end
   end
 
