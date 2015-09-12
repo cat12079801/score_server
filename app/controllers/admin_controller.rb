@@ -8,6 +8,17 @@ class AdminController < ApplicationController
   end
 
   def score
+    @teams = {}
+    Team.all.each do |team|
+      @teams.merge!({team.name => (ApplicationController.helpers.team_point team)})
+    end
+    @teams.sort.reverse!
+
+    @users = []
+    User.where(admin_flag: false).each do |user|
+      @users.push([(ApplicationController.helpers.user_point user), user.account, user.team.name])
+    end
+    @users.sort!.reverse!
   end
 
   def team
