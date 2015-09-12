@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   root to: "problems#index"
 
   resources :problems, :only => [:index, :show, :update]
+  resources :notifications, :only => [:index, :show]
 
   scope :admin do
     resources :admin_notifications, :path => 'notifications'
@@ -18,7 +19,5 @@ Rails.application.routes.draw do
   get 'admin/index'
   get 'admin/flag'
   get 'admin/score'
-  get 'notification/index'
-  get 'notification/show'
   get 'score', :controller => 'score', :action => 'score'
 end

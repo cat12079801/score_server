@@ -31,6 +31,10 @@ div#wrapper.devise {
   text-align: right;
 }
 
+.margin-top {
+  margin-top: 30px;
+}
+
 div.alerts {
   margin-top: 50px;
 }

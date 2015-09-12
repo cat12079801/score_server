@@ -1,0 +1,23 @@
+<div class="page-header">
+  <span>
+  <h1 style="display: inline"><%= @notification.title %></h1>
+</span>
+</div>
+
+<div class="jumbotron">
+  <%= @notification.description.html_safe %>
+</div>
+
+<div class="row">
+  <div class="col-sm-3">
+    <div class="btn-group btn-group-justified next">
+      <%= link_to 'Go ' + @notification.problem.title, admin_problem_path(@notification.problem), {:class => "btn btn-default"} if @notification.problem.present? %>
+    </div>
+  </div>
+  <div class="col-sm-6"></div>
+  <div class="col-sm-3">
+    <div class="btn-group btn-group-justified next">
+      <%= link_to 'Back', admin_notifications_path, {:class => "btn btn-default"} %>
+    </div>
+  </div>
+</div>

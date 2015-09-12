@@ -5,7 +5,7 @@ class AdminNotificationsController < ApplicationController
   # GET /admin_notifications
   # GET /admin_notifications.json
   def index
-    @admin_notifications = AdminNotification.all
+    @admin_notifications = Notification.all
   end
 
   # GET /admin_notifications/1
@@ -15,23 +15,26 @@ class AdminNotificationsController < ApplicationController
 
   # GET /admin_notifications/new
   def new
-    @admin_notification = AdminNotification.new
+    @admin_notification = Notification.new
+    @problems = Problem.all
   end
 
   # GET /admin_notifications/1/edit
   def edit
+    @problems = Problem.all
   end
 
   # POST /admin_notifications
   # POST /admin_notifications.json
   def create
-    @admin_notification = AdminNotification.new(admin_notification_params)
+    @admin_notification = Notification.new(admin_notification_params)
 
     respond_to do |format|
       if @admin_notification.save
-        format.html { redirect_to @admin_notification, notice: 'Admin notification was successfully created.' }
+        format.html { redirect_to admin_notification_path(@admin_notification), notice: 'Admin notification was successfully created.' }
         format.json { render :show, status: :created, location: @admin_notification }
       else
+        @problems = Problem.all
         format.html { render :new }
         format.json { render json: @admin_notification.errors, status: :unprocessable_entity }
       end
@@ -43,7 +46,7 @@ class AdminNotificationsController < ApplicationController
   def update
     respond_to do |format|
       if @admin_notification.update(admin_notification_params)
-        format.html { redirect_to @admin_notification, notice: 'Admin notification was successfully updated.' }
+        format.html { redirect_to admin_notification_path(@admin_notification), notice: 'Admin notification was successfully updated.' }
         format.json { render :show, status: :ok, location: @admin_notification }
       else
         format.html { render :edit }
@@ -65,11 +68,11 @@ class AdminNotificationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_admin_notification
-      @admin_notification = AdminNotification.find(params[:id])
+      @admin_notification = Notification.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_notification_params
-      params[:admin_notification]
+      params.require(:notification).permit(:title, :description, :problem_id)
     end
 end
