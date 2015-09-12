@@ -7,6 +7,10 @@ $(function() {
         append_modal();
       }else if(data["status"] == 'already'){
         append_already();
+      }else if(data["status"] == 'admin'){
+        append_admin();
+      }else if(data["status"] == 'admin_success'){
+        append_admin_success();
       }else{
         append_alert(data["flag"]);
       }
@@ -23,6 +27,12 @@ function append_modal(){
 
 function append_already(){
   $('div.alerts').append('<div class="alert alert-dismissible alert-info"> <button type="button" class="close" data-dismiss="alert">×</button> <strong>You already solved :(</strong></div>'); }
+
+function append_admin(){
+  $('div.alerts').append('<div class="alert alert-dismissible alert-info"> <button type="button" class="close" data-dismiss="alert">×</button> <strong>You are administor...</strong></div>'); }
+
+function append_admin_success(){
+  $('div.alerts').append('<div class="alert alert-dismissible alert-warning"> <button type="button" class="close" data-dismiss="alert">×</button> <strong>You are admin, and collect</strong></div>'); }
 
 function append_alert(flag){
   if(flag === ''){

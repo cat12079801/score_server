@@ -17,6 +17,10 @@ class ProblemsController < ApplicationController
   def update
     if params[:problem][:flag] == @problem.flag and @problem.users.index(current_user).present?
       render json: {status: 'already'}
+    elsif current_user.admin_flag and params[:problem][:flag] == @problem.flag
+      render json: {status: 'admin_success'}
+    elsif current_user.admin_flag and params[:problem][:flag] != @problem.flag
+      render json: {status: 'admin'}
     elsif params[:problem][:flag] == @problem.flag
       SentFlag.create(flag: params[:problem][:flag], user_id: current_user.id, problem_id: @problem.id, collect: true)
 
