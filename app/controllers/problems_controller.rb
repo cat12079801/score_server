@@ -23,7 +23,6 @@ class ProblemsController < ApplicationController
       render json: {status: 'admin'}
     elsif params[:problem][:flag] == @problem.flag
       SentFlag.create(flag: params[:problem][:flag], user_id: current_user.id, problem_id: @problem.id, collect: true)
-
       if @problem.user.nil?
         @problem.user = current_user
         @problem.save

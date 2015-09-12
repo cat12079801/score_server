@@ -2,7 +2,6 @@
 
 $(function() {
     $('.row').on('ajax:success', function(event, data, status, xhr) {
-      console.log(data["status"]);
       if(data["status"] == 'success'){
         append_modal();
       }else if(data["status"] == 'already'){
@@ -11,7 +10,7 @@ $(function() {
         append_admin();
       }else if(data["status"] == 'admin_success'){
         append_admin_success();
-      }else{
+      }else if(data["status"] == 'failure'){
         append_alert(data["flag"]);
       }
     });
@@ -22,7 +21,7 @@ $(function() {
 });
 
 function append_modal(){
-  $('div.alerts').append('<div class="modal"> <div class="modal-dialog"> <div class="modal-content"> <div class="modal-header"> <h4 class="modal-title">Congratulations!</h4> </div> <div class="modal-body"> <p>You solved this problem :)</p><p>Let\'s try others plz :p</p></div> <div class="modal-footer"> <button type="button" class="btn btn-primary close-modal">Save changes</button> </div> </div> </div> </div>');
+  $('div.alerts').append('<div class="modal"> <div class="modal-dialog"> <div class="modal-content"> <div class="modal-header"> <h4 class="modal-title">Congratulations!</h4> </div> <div class="modal-body"> <p>You solved this problem :)</p><p>Let\'s try others plz :p</p></div> <div class="modal-footer"> <button type="button" class="btn btn-primary close-modal">Close</button> </div> </div> </div> </div>');
 }
 
 function append_already(){
