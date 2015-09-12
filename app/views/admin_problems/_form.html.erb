@@ -1,4 +1,5 @@
-<%= form_for @admin_problem, :url => {:controller => 'admin_problems'}, :class => "form-horizontal" do |f| %>
+<% action = controller.action_name == 'new' ? 'create' : 'update' %>
+<%= form_for @admin_problem, :url => {:controller => 'admin_problems', :action => action}, :class => "form-horizontal" do |f| %>
   <% if @admin_problem.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@admin_problem.errors.count, "error") %> prohibited this admin_problem from being saved:</h2>

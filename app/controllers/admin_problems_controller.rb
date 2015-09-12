@@ -45,7 +45,7 @@ class AdminProblemsController < ApplicationController
   def update
     respond_to do |format|
       if @admin_problem.update(admin_problem_params)
-        format.html { redirect_to @admin_problem, notice: 'Admin problem was successfully updated.' }
+        format.html { redirect_to admin_problem_path(@admin_problem), notice: 'Admin problem was successfully updated.' }
         format.json { render :show, status: :ok, location: @admin_problem }
       else
         set_genres
@@ -77,6 +77,8 @@ class AdminProblemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_problem_params
-      params.require(:problem).permit(:title, :question, :flag, :point, :genre_id, :opened)
+      p = params.require(:problem).permit(:title, :question, :flag, :point, :genre_id, :opened)
+      p[:opened] ||= false
+      p
     end
 end

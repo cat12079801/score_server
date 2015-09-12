@@ -4,14 +4,16 @@
   <span>
   <h1 style="display: inline"><%= @problem.title %></h1>
   <p style="display: inline; font-size: 38px"><%= @problem.genre.name %> / <%= @problem.point %>pt</p>
-  <% if @problem.user == current_user %>
-    <span class="label label-success">最速正答</span>
-  <% elsif @problem.users.index(current_user).present? %>
-    <span class="label label-primary">正解</span>
-  <% elsif current_user.team.problems.index(problem).present? %>
-    <span class="label label-primary">チームが正解</span>
-  <% elsif @problem.user.present? %>
-    <span class="label label-danger">他チームが正解</span>
+  <% if current_user.admin_flag.! %>
+    <% if @problem.user == current_user %>
+      <span class="label label-success">最速正答</span>
+    <% elsif @problem.users.index(current_user).present? %>
+      <span class="label label-primary">正解</span>
+    <% elsif current_user.team.problems.index(problem).present? %>
+      <span class="label label-primary">チームが正解</span>
+    <% elsif @problem.user.present? %>
+      <span class="label label-danger">他チームが正解</span>
+    <% end %>
   <% end %>
 </span>
 </div>
