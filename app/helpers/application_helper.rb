@@ -26,6 +26,6 @@ module ApplicationHelper
   end
 
   def user_point_special user
-    user.problem.pluck(:point).sum
+    user.problem.pluck(:point).sum / 100
   end
 end
