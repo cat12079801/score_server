@@ -3,6 +3,11 @@
 <div class="page-header">
   <span>
   <h1 style="display: inline"><%= @admin_notification.title %></h1>
+  <% if @admin_notification.opened %>
+    <span class="label label-primary">公開済</span>
+  <% else %>
+    <span class="label label-danger">未公開</span>
+  <% end %>
 </span>
 </div>
 

@@ -6,6 +6,7 @@
       <th>タイトル</th>
       <th>詳細...</th>
       <th>対象問題</th>
+      <th>公開</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,6 +16,7 @@
         <td><%= admin_notification.title %></td>
         <td><%= admin_notification.description[0,20] %><%= '......' if admin_notification.description.length > 20 %></td>
         <td><%= 'No.' + admin_notification.problem.id.to_s + ' ' + admin_notification.problem.title if admin_notification.problem.present? %></td>
+        <td><%= '済' if admin_notification.opened %></td>
         <td><%= link_to '詳細', admin_notification_path(admin_notification) %></td>
         <td><%= link_to '編集', edit_admin_notification_path(admin_notification) %></td>
         <td><%= link_to '削除', admin_notification_path(admin_notification), method: :delete, data: { confirm: 'Are you sure?' } %></td>

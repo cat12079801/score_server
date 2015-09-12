@@ -73,6 +73,8 @@ class AdminNotificationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_notification_params
-      params.require(:notification).permit(:title, :description, :problem_id)
+      p = params.require(:notification).permit(:title, :description, :problem_id, :opened)
+      p[:opened] ||= false
+      p
     end
 end

@@ -38,6 +38,13 @@
     </div>
   </div>
 
+  <div class="form-group">
+    <%= f.label '公開', :class => "col-lg-2 control-label" %>
+    <div class="col-lg-10">
+      <%= f.check_box :opened, {}, true, false %>
+    </div>
+  </div>
+
   <div class="actions set-right">
     <%= f.submit 'Submit', :class => "btn btn-primary margin-top" %>
     <%= link_to 'Back', admin_notifications_path, :class => "btn btn-default margin-top" %>
