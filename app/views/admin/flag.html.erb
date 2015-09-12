@@ -1,2 +1,22 @@
-<h1>Admin#flag</h1>
-<p>Find me in app/views/admin/flag.html.erb</p>
+<table class="table table-striped table-hover ">
+  <thead>
+    <tr>
+      <th>アカウント</th>
+      <th>問題</th>
+      <th>送信フラグ</th>
+      <th>正解?</th>
+      <th>時間</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sent_flags.each do |sent_flag| %>
+      <tr>
+        <td><%= sent_flag.user.account %></td>
+        <td><%= sent_flag.problem.title %></td>
+        <td><%= sent_flag.flag %></td>
+        <td><%= sent_flag.collect ? '正解' : '不正解' %></td>
+        <td><%= sent_flag.created_at.localtime.strftime("%H:%M.%S") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

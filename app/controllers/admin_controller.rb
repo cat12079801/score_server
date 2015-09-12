@@ -5,6 +5,7 @@ class AdminController < ApplicationController
   end
 
   def flag
+    @sent_flags = SentFlag.all
   end
 
   def score
