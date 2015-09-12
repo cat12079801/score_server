@@ -5,7 +5,17 @@ class AdminController < ApplicationController
   end
 
   def flag
-    @sent_flags = SentFlag.all
+    #@sort = params[:sort]
+    #if @sort  == session[:sort]
+    #  @direction = session[:direction] == 'asc' ? 'desc' : 'asc'
+    #else
+    #  @direction = 'desc'
+    #end
+    #@sort ||= 'created_at'
+    #@sent_flags = SentFlag.order(@sort + ' ' + @direction).page(params[:page])
+    @sent_flags = SentFlag.order('id desc').page(params[:page])
+    #session[:sort] = @sort
+    #session[:direction] = @direction
   end
 
   def score
