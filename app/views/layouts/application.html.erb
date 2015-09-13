@@ -23,14 +23,14 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
       <ul class="nav navbar-nav">
-        <li class="dropdown">
+        <li class="dropdown <%= 'active' if controller.controller_name.match(/problems/).present? %>">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">問題<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="/admin/problems">管理者用</a></li>
             <li><a href="/">一般用</a></li>
           </ul>
         </li>
-        <li class="dropdown">
+        <li class="dropdown <%= 'active' if controller.controller_name.match(/notifications/).present? %>">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">お知らせ<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="/admin/notifications">管理者用</a></li>
@@ -40,7 +40,7 @@
         <li <%= ' class=active' if controller.controller_name == 'admin_teams' %>><a href="/admin/teams">チーム</a></li>
         <li <%= ' class=active' if controller.controller_name == 'admin_genres' %>><a href="/admin/genres">ジャンル</a></li>
         <li <%= ' class=active' if controller.controller_name == 'admin' and controller.action_name == 'flag' %>><a href="/admin/flag">回答</a></li>
-        <li class="dropdown">
+        <li class="dropdown <%= 'active' if controller.controller_name.match(/score/).present? or (controller.controller_name == 'admin' and controller.action_name == 'score') %>">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">スコア<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="/admin/score">管理者用</a></li>
