@@ -1,6 +1,6 @@
 class NotificationsController < ApplicationController
   def index
-    @notifications = Notification.where(opened: true)
+    @notifications = Notification.where(opened: true).reverse
   end
 
   def show

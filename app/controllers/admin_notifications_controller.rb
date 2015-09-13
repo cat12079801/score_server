@@ -5,7 +5,7 @@ class AdminNotificationsController < ApplicationController
   # GET /admin_notifications
   # GET /admin_notifications.json
   def index
-    @admin_notifications = Notification.all
+    @admin_notifications = Notification.all.reverse
   end
 
   # GET /admin_notifications/1
