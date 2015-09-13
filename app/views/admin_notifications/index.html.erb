@@ -3,6 +3,7 @@
 <table class="table table-striped table-hover ">
   <thead>
     <tr>
+      <th>No</th>
       <th>タイトル</th>
       <th>詳細...</th>
       <th>対象問題</th>
@@ -13,6 +14,7 @@
   <tbody>
     <% @admin_notifications.each do |admin_notification| %>
       <tr>
+        <td><%= admin_notification.id %></td>
         <td><%= admin_notification.title %></td>
         <td><%= admin_notification.description[0,20] %><%= '......' if admin_notification.description.length > 20 %></td>
         <td><%= 'No.' + admin_notification.problem.id.to_s + ' ' + admin_notification.problem.title if admin_notification.problem.present? %></td>
@@ -25,7 +27,9 @@
   </tbody>
 </table> 
 
-<br>
+<div style="text-align: center">
+  <%= paginate @admin_notifications %>
+</div>
 
 <div class="set-right">
 <%= link_to 'New notification', new_admin_notification_path, {:class => "btn btn-primary btn-lg"} %>

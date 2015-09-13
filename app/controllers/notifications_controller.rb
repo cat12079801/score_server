@@ -1,6 +1,6 @@
 class NotificationsController < ApplicationController
   def index
-    @notifications = Notification.where(opened: true).reverse
+    @notifications = Notification.where(opened: true).order('id desc').page(params[:page])
   end
 
   def show

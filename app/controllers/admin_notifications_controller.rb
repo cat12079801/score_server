@@ -5,7 +5,7 @@ class AdminNotificationsController < ApplicationController
   # GET /admin_notifications
   # GET /admin_notifications.json
   def index
-    @admin_notifications = Notification.all.reverse
+    @admin_notifications = Notification.all.order('id desc').page(params[:page])
   end
 
   # GET /admin_notifications/1

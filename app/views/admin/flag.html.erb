@@ -11,7 +11,7 @@
   </thead>
   <tbody>
     <% @sent_flags.each do |sent_flag| %>
-      <tr>
+      <tr <%= 'class=success' if sent_flag.collect %>>
         <td><%= sent_flag.id %></td>
         <td><%= sent_flag.user.account %></td>
         <td><%= sent_flag.problem.title %></td>
