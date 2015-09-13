@@ -16,12 +16,12 @@ $(function() {
     });
 
     $(document).on('click', 'button.close-modal', function(){
-      $('div.modal').remove();
+      $('div.modal').fadeOut('fast', function() { $(this).remove(); });
     });
 });
 
 function append_modal(){
-  $('div.alerts').append('<div class="modal"> <div class="modal-dialog"> <div class="modal-content"> <div class="modal-header"> <h4 class="modal-title">Congratulations!</h4> </div> <div class="modal-body"> <p>You solved this problem :)</p><p>Let\'s try others plz :p</p></div> <div class="modal-footer"> <button type="button" class="btn btn-primary close-modal">Close</button> </div> </div> </div> </div>');
+  $('<div class="modal"> <div class="modal-dialog"> <div class="modal-content"> <div class="modal-header"> <h4 class="modal-title">Congratulations!</h4> </div> <div class="modal-body"> <p>You solved this problem :)</p><p>Let\'s try others plz :p</p></div> <div class="modal-footer"> <button type="button" class="btn btn-primary close-modal">Close</button> </div> </div> </div> </div>').appendTo('div.alerts').hide().fadeIn(300);
 }
 
 function append_already(){
