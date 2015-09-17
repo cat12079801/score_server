@@ -20,6 +20,7 @@ gem 'kaminari'
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'spring-commands-rspec'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'byebug'
