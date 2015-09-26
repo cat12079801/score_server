@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150912160650) do
+ActiveRecord::Schema.define(version: 20150926035929) do
 
   create_table "genres", force: :cascade do |t|
     t.string   "name",       limit: 255, null: false
@@ -101,6 +101,8 @@ ActiveRecord::Schema.define(version: 20150912160650) do
     t.boolean  "admin_flag",                         default: false
     t.integer  "team_id",                limit: 4
     t.string   "email",                  limit: 255
+    t.string   "provider",               limit: 255
+    t.string   "uid",                    limit: 255
   end
 
   add_index "users", ["account"], name: "index_users_on_account", unique: true, using: :btree

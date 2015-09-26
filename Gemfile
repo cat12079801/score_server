@@ -17,6 +17,7 @@ gem 'execjs'
 gem 'less-rails'
 gem 'therubyracer'
 gem 'kaminari'
+gem 'omniauth-twitter'
 
 group :development, :test do
   gem 'rspec-rails'
