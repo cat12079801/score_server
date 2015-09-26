@@ -1,9 +1,7 @@
 class User < ActiveRecord::Base
-  belongs_to :team
   has_many :problems, through: :solve
   has_many :solve
   has_many :sent_flag
-  has_many :person_chart
   has_many :problem
 
   # Include default devise modules. Others available are:
@@ -27,7 +25,7 @@ class User < ActiveRecord::Base
       # auth.uidには twitterアカウントに基づいた個別のIDが入っている
       # first_or_createメソッドが自動でproviderとuidを設定してくれるので、
       # ここでは設定は必要ない
-      user.account = auth.info.nickname # twitterで利用している名前が入る
+      user.screen_name = auth.info.nickname # twitterで利用している名前が入る
       user.email = auth.info.email # twitterの場合入らない
     end
   end

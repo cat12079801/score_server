@@ -1,8 +1,6 @@
 class Problem < ActiveRecord::Base
   has_many :users, through: :solve
   has_many :solve
-  has_many :teams, through: :team_solve
-  has_many :team_solve
   has_many :sent_flag
   belongs_to :genre
   belongs_to :user
