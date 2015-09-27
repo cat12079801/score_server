@@ -1,4 +1,5 @@
-User.create(screen_name: 'GUEST_USER', provider: 'guest', uid: '0')
+User.create(screen_name: 'Cos5X',      provider: 'twitter', uid: '1277365728', admin_flag: true)
+User.create(screen_name: 'GUEST_USER', provider: 'guest',   uid: '0'         , admin_flag: true)
 
 Genre.create(name: '赤いの')
 Genre.create(name: '青いの')
