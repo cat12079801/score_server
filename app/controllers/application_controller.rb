@@ -5,8 +5,8 @@ class ApplicationController < ActionController::Base
   #before_action :authenticate_user!
 
   def admin_check!
-    if current_user.admin_flag
-    elsif
+    if current_user.present? and current_user.administor?
+    else
       redirect_to :root
     end
   end

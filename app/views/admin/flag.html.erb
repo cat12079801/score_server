@@ -10,15 +10,17 @@
     </tr>
   </thead>
   <tbody>
-    <% @sent_flags.each do |sent_flag| %>
-      <tr <%= 'class=success' if sent_flag.collect %>>
-        <td><%= sent_flag.id %></td>
-        <td><%= sent_flag.user.account %></td>
-        <td><%= sent_flag.problem.title %></td>
-        <td><%= sent_flag.flag %></td>
-        <td><%= sent_flag.collect ? '正解' : '不正解' %></td>
-        <td><%= sent_flag.created_at.localtime.strftime("%H:%M.%S") %></td>
-      </tr>
+    <% if @sent_flags.present? %>
+      <% @sent_flags.each do |sent_flag| %>
+        <tr <%= 'class=success' if sent_flag.collect %>>
+          <td><%= sent_flag.id %></td>
+          <td><%= sent_flag.user.screen_name %></td>
+          <td><%= sent_flag.problem.title %></td>
+          <td><%= sent_flag.flag %></td>
+          <td><%= sent_flag.collect ? '正解' : '不正解' %></td>
+          <td><%= sent_flag.created_at.localtime.strftime("%H:%M.%S") %></td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

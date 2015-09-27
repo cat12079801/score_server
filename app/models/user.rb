@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
   #validates :account, presence: true, uniqueness: true, length: {in: 1..255}
   #validates :admin_flag
 
+  def administor?
+    uid == '1277365728'
+  end
+
   def email_required?
     false
   end

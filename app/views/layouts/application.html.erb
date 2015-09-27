@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<% if user_signed_in? and current_user.admin_flag %>
+<% if user_signed_in? and current_user.administor? %>
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -30,14 +30,6 @@
             <li><a href="/">一般用</a></li>
           </ul>
         </li>
-        <li class="dropdown <%= 'active' if controller.controller_name.match(/notifications/).present? %>">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">お知らせ<span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="/admin/notifications">管理者用</a></li>
-            <li><a href="/notifications">一般用</a></li>
-          </ul>
-        </li>
-        <li <%= ' class=active' if controller.controller_name == 'admin_teams' %>><a href="/admin/teams">チーム</a></li>
         <li <%= ' class=active' if controller.controller_name == 'admin_genres' %>><a href="/admin/genres">ジャンル</a></li>
         <li <%= ' class=active' if controller.controller_name == 'admin' and controller.action_name == 'flag' %>><a href="/admin/flag">回答</a></li>
         <li class="dropdown <%= 'active' if controller.controller_name.match(/score/).present? or (controller.controller_name == 'admin' and controller.action_name == 'score') %>">
@@ -50,7 +42,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_user.account %> <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_user.screen_name %> <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><%= link_to 'ログアウト', destroy_user_session_url, method: :delete %></li>
             <li><%= link_to 'パスワード変更', edit_user_registration_path(@user) %></li>
@@ -60,7 +52,7 @@
     </div>
   </div>
 </nav>
-<% elsif user_signed_in? and current_user.admin_flag.! %>
+<% else %>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -76,18 +68,20 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
       <ul class="nav navbar-nav">
         <li <%= ' class=active' if controller.controller_name == 'problems' %>><a href="/">問題</a></li>
-        <li <%= ' class=active' if controller.controller_name == 'notifications' %>><a href="/notifications">お知らせ</a></li>
         <li <%= ' class=active' if controller.controller_name == 'score' %>><a href="/score">スコア</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a><%= current_user.team.name %> / <%= team_point current_user.team %>(<%= team_point_base current_user.team %>+<%= team_point_special current_user.team %>)pt</a></li>
+        <% if current_user %>
+        <li><a><%= current_user.point %></a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_user.account %> <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_user.screen_name %> <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><%= link_to 'ログアウト', destroy_user_session_url, method: :delete %></li>
-            <li><%= link_to 'パスワード変更', edit_user_registration_path(@user) %></li>
           </ul>
         </li>
+      <% else %>
+        <li><%= link_to "Sign in with Twitter", user_omniauth_authorize_path(:twitter) %></li>
+      <% end %>
       </ul>
     </div>
   </div>
