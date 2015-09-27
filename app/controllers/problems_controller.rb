@@ -17,28 +17,23 @@ class ProblemsController < ApplicationController
   def update
     if params[:problem][:flag] == @problem.flag and @problem.users.index(current_user).present?
       render json: {status: 'already'}
-    elsif current_user.admin_flag and params[:problem][:flag] == @problem.flag
+    elsif current_user.present? and current_user.administor? and params[:problem][:flag] == @problem.flag
       render json: {status: 'admin_success'}
-    elsif current_user.admin_flag and params[:problem][:flag] != @problem.flag
+    elsif current_user.present? and current_user.administor? and params[:problem][:flag] != @problem.flag
       render json: {status: 'admin'}
     elsif params[:problem][:flag] == @problem.flag
-      SentFlag.create(flag: params[:problem][:flag], user_id: current_user.id, problem_id: @problem.id, collect: true)
-      if @problem.user.nil?
-        @problem.user = current_user
-        @problem.save
-      end
-      if @problem.teams.index(current_user.team).nil?
-        @problem.teams << current_user.team
-        @problem.save
-      end
-      if @problem.users.index(current_user).nil?
+      if current_user.present?
+        SentFlag.create(flag: params[:problem][:flag], user_id: current_user.id, problem_id: @problem.id, collect: true)
         @problem.users << current_user
-        @problem
+        @problem.save
+      else
+        SentFlag.create(flag: params[:problem][:flag], user_id: 1, problem_id: @problem.id, collect: true)
       end
 
       render json: {status: 'success'}
     else
-      SentFlag.create(flag: params[:problem][:flag], user_id: current_user.id, problem_id: @problem.id, collect: false)
+      user_id = current_user.present? ? current_user.id : 1
+      SentFlag.create(flag: params[:problem][:flag], user_id: user_id, problem_id: @problem.id, collect: false)
       render json: {status: 'failure', flag: params[:problem][:flag]}
     end
   end

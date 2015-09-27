@@ -1,3 +1,5 @@
+User.create(screen_name: 'GUEST_USER', provider: 'guest', uid: '0')
+
 Genre.create(name: '赤いの')
 Genre.create(name: '青いの')
 Genre.create(name: '黄色いの')

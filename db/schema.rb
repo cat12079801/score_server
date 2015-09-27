@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150926075925) do
+ActiveRecord::Schema.define(version: 20150927021556) do
 
   create_table "genres", force: :cascade do |t|
     t.string   "name",       limit: 255, null: false
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20150926075925) do
 
   create_table "sent_flags", force: :cascade do |t|
     t.string   "flag",       limit: 255, null: false
-    t.integer  "user_id",    limit: 4,   null: false
+    t.integer  "user_id",    limit: 4
     t.integer  "problem_id", limit: 4,   null: false
     t.boolean  "collect",                null: false
     t.datetime "created_at",             null: false
