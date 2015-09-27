@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150927021556) do
+ActiveRecord::Schema.define(version: 20150927071513) do
 
   create_table "genres", force: :cascade do |t|
     t.string   "name",       limit: 255, null: false
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20150927021556) do
 
   create_table "sent_flags", force: :cascade do |t|
     t.string   "flag",       limit: 255, null: false
-    t.integer  "user_id",    limit: 4
+    t.integer  "user_id",    limit: 4,   null: false
     t.integer  "problem_id", limit: 4,   null: false
     t.boolean  "collect",                null: false
     t.datetime "created_at",             null: false
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20150927021556) do
     t.string   "email",                  limit: 255
     t.string   "provider",               limit: 255
     t.string   "uid",                    limit: 255
+    t.integer  "points",                 limit: 4,   default: 0
   end
 
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree

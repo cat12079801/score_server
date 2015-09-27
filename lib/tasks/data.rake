@@ -20,6 +20,10 @@ namespace :data do
     User.all.each do |user|
       user.problems << Problem.all.sample(10)
       user.save
+      user.points = user.point
+      user.save
+      sleep(3)
+      puts 'complete ' + user.screen_name
     end
   end
 end

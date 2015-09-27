@@ -26,6 +26,7 @@ class ProblemsController < ApplicationController
         SentFlag.create(flag: params[:problem][:flag], user_id: current_user.id, problem_id: @problem.id, collect: true)
         @problem.users << current_user
         @problem.save
+        current_user.points = current_user.point
       else
         SentFlag.create(flag: params[:problem][:flag], user_id: 1, problem_id: @problem.id, collect: true)
       end
