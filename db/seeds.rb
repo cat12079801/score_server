@@ -1,24 +1,8 @@
-Team.create(name: 'RED')
-Team.create(name: 'BLUE')
-Team.create(name: 'YELLOW')
-
 Genre.create(name: '赤いの')
 Genre.create(name: '青いの')
 Genre.create(name: '黄色いの')
 Genre.create(name: '白いの')
 Genre.create(name: '黒いの')
-
-h = 'hogehoge'
-User.create(account: 'admin',   password: h, admin_flag: true)
-User.create(account: 'red',     password: h, team_id: 1)
-User.create(account: 'aka',     password: h, team_id: 1)
-User.create(account: 'fire',    password: h, team_id: 1)
-User.create(account: 'bulue',   password: h, team_id: 2)
-User.create(account: 'ao',      password: h, team_id: 2)
-User.create(account: 'water',   password: h, team_id: 2)
-User.create(account: 'yellow',  password: h, team_id: 3)
-User.create(account: 'kiiro',   password: h, team_id: 3)
-User.create(account: 'pikatyu', password: h, team_id: 3)
 
 def r
   if rand(100) > 50

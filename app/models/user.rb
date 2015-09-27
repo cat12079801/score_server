@@ -17,6 +17,11 @@ class User < ActiveRecord::Base
     uid == '1277365728'
   end
 
+  def point
+    problems.pluck(:point).sum
+  end
+
+
   def email_required?
     false
   end

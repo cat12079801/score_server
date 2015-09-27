@@ -10,22 +10,12 @@
   </thead>
   <tbody>
     <% @problems.each do |problem| %>
-      <tr>
+      <tr <%= problem_solved problem %>>
         <td><%= problem.id %></td>
         <td><%= link_to problem.title, problem_url(problem) %></td>
         <td><%= problem.point %></td>
         <td><%= problem.genre.name %></td>
-        <td>
-        <% if current_user.admin_flag.! %>
-          <% if problem.user == current_user %>
-            <span class="label label-success">最速正答</span>
-          <% elsif problem.users.index(current_user).present? %>
-            <span class="label label-primary">正解</span>
-          <% end %>
-        <% else %>
-          (´･8･`)
-        <% end %>
-        </td>
+        <td><%= problem.users.length %> solved</td>
       </tr>
     <% end %>
   </tbody>
